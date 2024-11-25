@@ -17,7 +17,7 @@ form.addEventListener('submit', async (e) => {
         })
     });
     const data = await response.json();
-    console.log(data);
+    console.log(data.token);
     if(response.ok) {
         localStorage("token", data.token);
     } else {
