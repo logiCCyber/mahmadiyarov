@@ -20,7 +20,13 @@ form.addEventListener('submit', async (e) => {
     console.log(data.token);
     if(response.ok) {
         localStorage.setItem("token", data.token);
-        console.log(data.token);
+            await fetch("/admin", {
+            method: 'POST',
+            headers: {
+                    "Content-Type": "application/json", // Тип содержимого
+                    "Authorization": `Bearer ${token}` // Заголовок авторизации
+                }
+            }); 
     } else {
          console.log("Toekn is not");   
     }        
