@@ -20,6 +20,7 @@ form.addEventListener('submit', async (e) => {
     console.log(data.token);
     if(response.ok) {
         localStorage.setItem("token", data.token);
+        const token = localStorage.getItem("token");
             await fetch("/admin", {
             method: 'GET',
             headers: {
