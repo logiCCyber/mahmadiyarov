@@ -1,4 +1,14 @@
-const result = await fetch("/", {
+
+
+const form = document.querySelector('#form_auth');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.querySelector('#login').value;
+    const password = document.querySelector('#pass').value;
+
+    const result = await fetch("/", {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -24,3 +34,4 @@ if (result.ok) {
 } else {
     console.log("Authorization failed");
 }
+});
