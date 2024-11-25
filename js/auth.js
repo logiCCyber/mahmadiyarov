@@ -21,17 +21,6 @@ form.addEventListener('submit', async (e) => {
         // Сохраняем токен в localStorage
         localStorage.setItem("token", data.token);
 
-        // Получаем токен из localStorage
-        const token = localStorage.getItem("token");
-
-        // Отправляем запрос на защищенный маршрут
-        const protectedRoute = await fetch("/admin", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-            },
-        });
-
         // Перенаправляем в зависимости от роли
         if (data.role === 'admin') {
             window.location.href = "/admin"; // Перенаправление на страницу администратора
