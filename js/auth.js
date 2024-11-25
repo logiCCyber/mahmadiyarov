@@ -32,16 +32,6 @@ form.addEventListener('submit', async (e) => {
                     "Authorization": `Bearer ${token}` // Используем токен из localStorage
                 }
             });
-
-            if (adminResponse.ok) {
-                const adminData = await adminResponse.json(); // Если запрос успешен, получаем данные
-                console.log("Доступ к /admin:", adminData);
-            } else {
-                console.error("Ошибка доступа к /admin:", adminResponse.status);
-            }
-        } else {
-            console.error("Ошибка авторизации:", data.message || response.status);
-        }
     } catch (error) {
         console.error("Произошла ошибка:", error.message);
     }
