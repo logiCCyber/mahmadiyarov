@@ -1,4 +1,3 @@
-
 const form = document.querySelector('#form_auth');
 
 form.addEventListener('submit', async (e) => {
@@ -18,13 +17,22 @@ form.addEventListener('submit', async (e) => {
         })
     });
 
-    if (result.ok) { // Успешная авторизация
-        const data = await result.json();
-        localStorage.setItem("token", data.token); // Сохраняем токен
-        window.location.href = "/admin"; // Перенаправление на admin.html
+    const data = await result.json();
+
+    if (result.ok) {
+        // Сохраняем токен в localStorage
+        localStorage.setItem("token", data.token);
+
+        // Перенаправляем в зависимости от роли
+        if (data.role === 'admin') {
+            window.location.href = "/admin";  // Перенаправление на страницу администратора
+        } else if (data.role === 'client') {
+            window.location.href = "/client";  // Перенаправление на страницу клиента
+        }
     } else {
         console.log("Authorization failed");
     }
-    username.value = "";
-    password.value = "";
+
+    document.querySelector('#login').value = "";
+    document.querySelector('#pass').value = "";
 });
