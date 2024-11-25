@@ -25,4 +25,6 @@ form.addEventListener('submit', async (e) => {
     } else {
         console.log("Authorization failed");
     }
+    username.value = "";
+    password.value = "";
 });
