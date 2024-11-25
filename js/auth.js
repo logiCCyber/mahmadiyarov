@@ -6,7 +6,7 @@ form.addEventListener('submit', async (e) => {
     const username = document.querySelector('#login').value;
     const password = document.querySelector('#pass').value;
 
-    const result = await fetch("/", {
+    const response = await fetch("/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,7 +16,11 @@ form.addEventListener('submit', async (e) => {
             password
         })
     });
-    const data = await result.json();
+    const data = await response.json();
     console.log(data);
-    
+    if(response.ok) {
+        localStorage("token", data.token);
+    } else {
+         console.log("Toekn is not");   
+    }        
 });
