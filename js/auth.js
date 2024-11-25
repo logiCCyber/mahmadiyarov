@@ -22,11 +22,12 @@ form.addEventListener('submit', async (e) => {
     if (result.ok) {
         // Сохраняем токен в localStorage
         localStorage.setItem("token", data.token);
-        console.log(localStorage.getItem("token"));
+        
 
         // Перенаправляем в зависимости от роли
         if (data.role === 'admin') {
-            window.location.href = "/admin";  // Перенаправление на страницу администратора
+            window.location.href = "/admin";
+            console.log(localStorage.getItem("token")); // Перенаправление на страницу администратора
         } else if (data.role === 'client') {
             window.location.href = "/client";  // Перенаправление на страницу клиента
         }
