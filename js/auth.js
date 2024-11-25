@@ -18,7 +18,7 @@ form.addEventListener('submit', async (e) => {
         })
     });
 
-    if (result.status === 200) { // Успешная авторизация
+    if (result.ok) { // Успешная авторизация
         const data = await result.json();
         localStorage.setItem("token", data.token); // Сохраняем токен
         window.location.href = "/admin"; // Перенаправление на admin.html
