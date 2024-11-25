@@ -1,5 +1,3 @@
-const form = document.querySelector('#form_auth');
-
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -18,15 +16,25 @@ form.addEventListener('submit', async (e) => {
     });
 
     const data = await result.json();
-
+    
     if (result.ok) {
         // Сохраняем токен в localStorage
         localStorage.setItem("token", data.token);
-        
+
+        // Получаем токен из localStorage
+        const token = localStorage.getItem("token");
+
+        // Отправляем запрос на защищенный маршрут
+        const protectedRoute = await fetch("/admin", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+        });
 
         // Перенаправляем в зависимости от роли
         if (data.role === 'admin') {
-            window.location.href = "/admin";// Перенаправление на страницу администратора
+            window.location.href = "/admin"; // Перенаправление на страницу администратора
         } else if (data.role === 'client') {
             window.location.href = "/client";  // Перенаправление на страницу клиента
         }
@@ -34,6 +42,7 @@ form.addEventListener('submit', async (e) => {
         console.log("Authorization failed");
     }
 
+    // Очистка полей формы
     document.querySelector('#login').value = "";
     document.querySelector('#pass').value = "";
 });
