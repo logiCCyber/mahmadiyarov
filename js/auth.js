@@ -21,7 +21,7 @@ form.addEventListener('submit', async (e) => {
     if(response.ok) {
         localStorage.setItem("token", data.token);
             await fetch("/admin", {
-            method: 'POST',
+            method: 'GET',
             headers: {
                     "Content-Type": "application/json", // Тип содержимого
                     "Authorization": `Bearer ${token}` // Заголовок авторизации
