@@ -18,6 +18,13 @@ form.addEventListener('submit', async (e) => {
     });
 
     const data = await result.json();
+    
+    const protectedRoute = await fetch("/admin", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+        });
 
     if (result.ok) {
         // Сохраняем токен в localStorage
