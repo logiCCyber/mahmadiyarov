@@ -41,8 +41,4 @@ form.addEventListener('submit', async (e) => {
     } else {
         console.log("Authorization failed");
     }
-
-    // Очистка полей формы
-    document.querySelector('#login').value = "";
-    document.querySelector('#pass').value = "";
 });
