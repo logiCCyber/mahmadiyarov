@@ -22,16 +22,6 @@ form.addEventListener('submit', async (e) => {
     if (result.ok) {
         // Сохраняем токен в localStorage
         localStorage.setItem("token", data.token);
-
-        // Декодируем токен
-        const decoded = jwt_decode(data.token);
-
-        // Перенаправляем в зависимости от роли
-        if (decoded.role === 'admin') {
-            window.location.href = "/admin"; // Перенаправление на страницу администратора
-        } else if (decoded.role === 'client') {
-            window.location.href = "/client";  // Перенаправление на страницу клиента
-        }
     } else {
         console.log("Authorization failed");
     }
