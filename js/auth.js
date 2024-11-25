@@ -1,3 +1,5 @@
+import jwt_decode from 'jwt-decode';
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -21,10 +23,13 @@ form.addEventListener('submit', async (e) => {
         // Сохраняем токен в localStorage
         localStorage.setItem("token", data.token);
 
+        // Декодируем токен
+        const decoded = jwt_decode(data.token);
+
         // Перенаправляем в зависимости от роли
-        if (data.role === 'admin') {
+        if (decoded.role === 'admin') {
             window.location.href = "/admin"; // Перенаправление на страницу администратора
-        } else if (data.role === 'client') {
+        } else if (decoded.role === 'client') {
             window.location.href = "/client";  // Перенаправление на страницу клиента
         }
     } else {
