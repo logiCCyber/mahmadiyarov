@@ -20,6 +20,7 @@ form.addEventListener('submit', async (e) => {
     console.log(data.token);
     if(response.ok) {
         localStorage.setItem("token", data.token);
+        console.log(data.token);
     } else {
          console.log("Toekn is not");   
     }        
