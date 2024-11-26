@@ -18,5 +18,5 @@ form.addEventListener('submit', async (e) => {
 
         const data = await response.json(); // Получаем ответ в формате JSON
         console.log(data.token);
-
+    });
 });
