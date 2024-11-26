@@ -6,7 +6,6 @@ form.addEventListener('submit', async (e) => {
     const username = document.querySelector('#login').value; // Получаем логин
     const password = document.querySelector('#pass').value; // Получаем пароль
 
-    try {
         // Запрос на авторизацию
         const response = await fetch("/login", {
             method: 'POST',
@@ -18,5 +17,4 @@ form.addEventListener('submit', async (e) => {
 
         const data = await response.json(); // Получаем ответ в формате JSON
         console.log(data.token);
-    });
 });
