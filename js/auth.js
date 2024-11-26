@@ -8,7 +8,7 @@ form.addEventListener('submit', async (e) => {
 
     try {
         // Запрос на авторизацию
-        const response = await fetch("/", {
+        const response = await fetch("/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,20 +19,4 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json(); // Получаем ответ в формате JSON
         console.log(data.token);
 
-        if (response.ok) {
-            // Сохраняем токен в localStorage
-            const token = data.token;
-            localStorage.setItem("token", token);
-
-            // Делаем запрос на /admin с токеном
-            const adminResponse = await fetch("/admin", {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}` // Используем токен из localStorage
-                }
-            });
-    } catch (error) {
-        console.error("Произошла ошибка:", error.message);
-    }
 });
