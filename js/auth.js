@@ -6,7 +6,7 @@ form.addEventListener('submit', async (e) => {
     const username = document.querySelector('#login').value;
     const password = document.querySelector('#pass').value;
 
-    const response = await fetch("/", {
+    const response = await fetch("/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
