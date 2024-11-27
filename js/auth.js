@@ -1,29 +1,39 @@
 const form = document.querySelector('#form_auth');
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Останавливаем отправку формы
+    e.preventDefault();
 
-    const username = document.querySelector('#login').value; // Получаем логин
-    const password = document.querySelector('#pass').value; // Получаем пароль
+    const username = document.querySelector('#login').value;
+    const password = document.querySelector('#pass').value;
+
+    const response = await fetch("/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username,
+            password
+        })
+    });
 
     try {
-        // Запрос на авторизацию
-        const response = await fetch("/login", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }) // Отправляем данные в формате JSON
-        });
-
-        if (!response.ok) { // Проверяем успешность ответа
-            throw new Error(`Ошибка: ${response.statusText}`);
+        if (response.status === 401) {
+            throw new Error("Invalid credentials");
         }
 
-        const data = await response.json(); // Получаем ответ в формате JSON
-        console.log(data.token); // Выводим токен
+        if (!response.ok) {
+            throw new Error("An error occurred");
+        } 
+    
+        const data = await response.json();
+        const token = data.token;
+    
+        localStorage.setItem("token", token);
 
+        window.location.href = "/admin";
+        
     } catch (error) {
-        console.error('Произошла ошибка:', error); // Обработка ошибок
+        console.log(error.message);        
     }
 });
