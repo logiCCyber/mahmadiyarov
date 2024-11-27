@@ -1,6 +1,6 @@
 const accessToResource = async function () {
     const token = localStorage.getItem("token");
-
+    console.log(token);
     if (!token) {
         // Если токена нет, перенаправляем на страницу входа
         window.location.href = "/login";
