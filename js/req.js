@@ -14,7 +14,7 @@ const accessToResource = async function () {
                 "Authorization": `Bearer ${token}`
             }
         });
-
+        console.log("Authorization:", `Bearer ${token}`);
         // Проверяем, успешен ли ответ
         if (!result.ok) {
             if (result.status === 401 || result.status === 403) {
