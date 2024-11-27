@@ -30,6 +30,7 @@ form.addEventListener('submit', async (e) => {
         const token = data.token;
     
         localStorage.setItem("token", token);
+        console.log(localStorage.getItem("token"));
 
         window.location.href = "/admin";
         console.log(token);
