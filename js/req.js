@@ -11,7 +11,7 @@ const accessToResource = async function () {
         const result = await fetch("/admin", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoxMDAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoicm9vdCIsInBhc3N3b3JkIjoiMTIzIn0sImlhdCI6MTczMjcyMTY2NiwiZXhwIjoxNzMyNzI1MjY2fQ.vHUblIPw6vFEOUuY24zrBLo4936BS99oOOyeBDK2k_g`
+                "Authorization": `Bearer ${token}`
             }
         });
         
