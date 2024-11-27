@@ -32,6 +32,7 @@ form.addEventListener('submit', async (e) => {
         localStorage.setItem("token", token);
 
         window.location.href = "/admin";
+        console.log(token);
         
     } catch (error) {
         console.log(error.message);        
