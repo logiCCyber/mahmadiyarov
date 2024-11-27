@@ -6,7 +6,7 @@ const accessToResource = async function () {
         window.location.href = "/login";
         return; // Завершаем выполнение функции
     }
-
+    console.log("Authorization:", `Bearer ${token}`);
     try {
         const result = await fetch("/admin", {
             method: "GET",
@@ -14,7 +14,7 @@ const accessToResource = async function () {
                 "Authorization": `Bearer ${token}`
             }
         });
-        console.log("Authorization:", `Bearer ${token}`);
+        
         // Проверяем, успешен ли ответ
         if (!result.ok) {
             if (result.status === 401 || result.status === 403) {
