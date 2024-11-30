@@ -11,7 +11,8 @@ const accessToResource = async function () {
         const result = await fetch("/admin", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json',
             }
         });
         
