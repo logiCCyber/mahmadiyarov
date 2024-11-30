@@ -1,5 +1,5 @@
 const accessToResource = async function () {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token_key");
     console.log(token);
     if (!token) {
         // Если токена нет, перенаправляем на страницу входа
