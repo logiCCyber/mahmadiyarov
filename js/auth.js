@@ -24,17 +24,18 @@ form.addEventListener('submit', async (e) => {
 
         if (!response.ok) {
             throw new Error("An error occurred");
-        } 
-    
+        }
+
         const data = await response.json();
         const token = data.token;
-    
-        localStorage.setItem("token_key", token);
+
+        // Сохраняем токен в cookie
+        document.cookie = `token=${token}; path=/; max-age=3600`; // Токен действителен 1 час
 
         window.location.href = "/admin";
         console.log(token);
-        
+
     } catch (error) {
-        console.log(error.message);        
+        console.log(error.message);
     }
 });
