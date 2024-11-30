@@ -20,6 +20,7 @@ form.addEventListener('submit', async (e) => {
     try {
         if (response.status === 401) {
             throw new Error("Invalid credentials");
+            alert("Username or password incorrect");
         }
 
         if (!response.ok) {
