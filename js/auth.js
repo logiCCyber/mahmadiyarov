@@ -30,12 +30,19 @@ form.addEventListener('submit', async (e) => {
         // Сохраняем токен в cookie
         document.cookie = `token=${token}; path=/; max-age=3600`;  // Токен действителен 1 час
 
-        // Перенаправляем в зависимости от роли пользователя
-        const decoded = jwt.decode(token);
-        if (decoded.role === 'admin') {
-            window.location.href = "/admin";  // Перенаправляем в админскую панель
-        } else if (decoded.role === 'client') {
-            window.location.href = "/client";  // Перенаправляем на страницу клиента
+        // Теперь перенаправляем в зависимости от роли пользователя
+        // Роль пользователя передается на сервере в токене
+        // Редиректим в /admin или /client в зависимости от роли
+        if (token) {
+            // Отправляем токен на сервер для проверки роли
+            const decoded = JSON.parse(atob(token.split('.')[1])); // Декодируем payload токена (без проверки подписи)
+            const userRole = decoded.role;  // Извлекаем роль пользователя
+
+            if (userRole === 'admin') {
+                window.location.href = "/admin";  // Перенаправляем в админскую панель
+            } else if (userRole === 'client') {
+                window.location.href = "/client";  // Перенаправляем на страницу клиента
+            }
         }
 
     } catch (error) {
