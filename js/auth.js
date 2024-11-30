@@ -39,6 +39,8 @@ form.addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.log(error.message);
-        alert("Username or password incorrect"); // Показываем ошибку, если что-то пошло не так
+        alert("Username or password incorrect");
+        username.value = "";
+        password.value = "";// Показываем ошибку, если что-то пошло не так
     }
 });
