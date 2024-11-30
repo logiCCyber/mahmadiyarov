@@ -1,3 +1,4 @@
+// client-side JavaScript (например, в login.js)
 const form = document.querySelector('#form_auth');
 
 form.addEventListener('submit', async (e) => {
@@ -29,7 +30,14 @@ form.addEventListener('submit', async (e) => {
         // Сохраняем токен в cookie
         document.cookie = `token=${token}; path=/; max-age=3600`;  // Токен действителен 1 час
 
-        window.location.href = "/admin"; // Перенаправляем пользователя
+        // Перенаправляем в зависимости от роли пользователя
+        const decoded = jwt.decode(token);
+        if (decoded.role === 'admin') {
+            window.location.href = "/admin";  // Перенаправляем в админскую панель
+        } else if (decoded.role === 'client') {
+            window.location.href = "/client";  // Перенаправляем на страницу клиента
+        }
+
     } catch (error) {
         console.log(error.message);
         alert("Username or password incorrect");
