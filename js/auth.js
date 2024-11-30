@@ -29,7 +29,7 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
         const token = data.token;
     
-        localStorage.setItem("token", token);
+        localStorage.setItem("token_key", token);
 
         window.location.href = "/admin";
         console.log(token);
