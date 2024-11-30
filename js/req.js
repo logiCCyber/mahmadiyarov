@@ -1,11 +1,20 @@
+// Функция для получения токена из cookies
+function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+}
+
 const accessToResource = async function () {
-    const token = localStorage.getItem("token_key");
+    // Получаем токен из cookie
+    const token = getCookie("token");
     console.log(token);
+
     if (!token) {
         // Если токена нет, перенаправляем на страницу входа
         window.location.href = "/login";
         return; // Завершаем выполнение функции
     }
+
     console.log("Authorization:", `Bearer ${token}`);
     try {
         const result = await fetch("/admin", {
