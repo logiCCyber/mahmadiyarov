@@ -3,8 +3,8 @@ const form = document.querySelector('#form_auth');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#login');
-    const password = document.querySelector('#pass');
+    const username = document.querySelector('#login').value;
+    const password = document.querySelector('#pass').value;
 
     try {
         const response = await fetch("/login", {
@@ -12,19 +12,14 @@ form.addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                username: username.value,
-                password: password.value
-            })
+            body: JSON.stringify({ username, password })
         });
 
         if (response.status === 401) {
-            // Если статус 401, значит неверные данные
             throw new Error("Invalid credentials");
         }
 
         if (!response.ok) {
-            // Обработка других ошибок
             throw new Error("An error occurred");
         }
 
@@ -32,15 +27,11 @@ form.addEventListener('submit', async (e) => {
         const token = data.token;
 
         // Сохраняем токен в cookie
-        document.cookie = `token=${token}; path=/; max-age=3600`; // Токен действителен 1 час
+        document.cookie = `token=${token}; path=/; max-age=3600`;  // Токен действителен 1 час
 
         window.location.href = "/admin"; // Перенаправляем пользователя
-        console.log(token);
-
     } catch (error) {
         console.log(error.message);
         alert("Username or password incorrect");
-        username.value = "";  // Очищаем поле username
-        password.value = "";  // Очищаем поле password
     }
 });
