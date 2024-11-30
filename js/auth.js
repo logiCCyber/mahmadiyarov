@@ -19,8 +19,7 @@ form.addEventListener('submit', async (e) => {
 
     try {
         if (response.status === 401) {
-            throw new Error("Invalid credentials");
-            alert("Username or password incorrect");
+            throw new Error("Invalid credentials");            
         }
 
         if (!response.ok) {
@@ -38,5 +37,6 @@ form.addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.log(error.message);
+        alert("Username or password incorrect");
     }
 });
