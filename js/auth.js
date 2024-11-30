@@ -3,8 +3,8 @@ const form = document.querySelector('#form_auth');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#login').value;
-    const password = document.querySelector('#pass').value;
+    const username = document.querySelector('#login');
+    const password = document.querySelector('#pass');
 
     try {
         const response = await fetch("/login", {
@@ -13,8 +13,8 @@ form.addEventListener('submit', async (e) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username,
-                password
+                username: username.value,
+                password: password.value
             })
         });
 
@@ -40,7 +40,7 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         console.log(error.message);
         alert("Username or password incorrect");
-        username.value = "";
-        password.value = "";// Показываем ошибку, если что-то пошло не так
+        username.value = "";  // Очищаем поле username
+        password.value = "";  // Очищаем поле password
     }
 });
