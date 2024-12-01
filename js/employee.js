@@ -2,11 +2,11 @@ const form = document.querySelector('#form_reg');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.querySelector("firstName");
-    const user = document.querySelector("#username");
-    const pass = document.querySelector("#password");
-    const confirm = document.querySelector("#confirm");
-    const job = document.querySelector("#job");
-    const salary = document.querySelector("#salary");
+    const user = document.querySelector("username");
+    const pass = document.querySelector("password");
+    const confirm = document.querySelector("confirm");
+    const job = document.querySelector("job");
+    const salary = document.querySelector("salary");
 
     const response = await fetch("/registration", {
        method: "POST",
