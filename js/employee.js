@@ -1,7 +1,7 @@
 const form = document.querySelector('#form_reg');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log(document.querySelector("#firstName"));
+    console.log(document.querySelector("#firstName").value);
     // const name = document.querySelector("#firstName");
     // const user = document.querySelector("#username");
     // const pass = document.querySelector("#password");
