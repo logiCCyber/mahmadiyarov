@@ -1,29 +1,28 @@
 const form = document.querySelector('#form_reg');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // const name = document.querySelector("#firstName").value;
-    // const user = document.querySelector("#username").value;
-    // const pass = document.querySelector("#password").value;
-    // const confirm = document.querySelector("#confirm").value;
-    // const job = document.querySelector("#job").value;
-    // const salary = document.querySelector("#salary").value;
+    const name = document.querySelector("#firstName");
+    const user = document.querySelector("#username");
+    const pass = document.querySelector("#password");
+    const confirm = document.querySelector("#confirm");
+    const job = document.querySelector("#job");
+    const salary = document.querySelector("#salary");
 
-    // const response = await fetch("/registration", {
-    //    method: "POST",
-    //    headers: {
-    //         "Content-Type": "application/json"
-    //    },
-    //    body: JSON.stringify({
-    //         name,
-    //         user,
-    //         pass,
-    //         confirm,
-    //         job,
-    //         salary
-    //    }) 
-    // });
+    const response = await fetch("/registration", {
+       method: "POST",
+       headers: {
+            "Content-Type": "application/json"
+       },
+       body: JSON.stringify({
+            name.value,
+            user.value,
+            pass.value,
+            confirm.value,
+            job.value,
+            salary.value
+       }) 
+    });
 
-    // const data = await response.json();
-    // console.log(data);    
-  console.log("super");
+    const data = await response.json();
+    console.log(data);    
 });
