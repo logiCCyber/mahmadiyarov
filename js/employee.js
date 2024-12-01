@@ -1,4 +1,5 @@
 const form = document.querySelector('#form_reg');
+console.log("super");
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.querySelector("#firstName").value;
@@ -24,6 +25,5 @@ form.addEventListener('submit', async (e) => {
     });
 
     const data = await response.json();
-    console.log(data);
-    
+    console.log(data);    
 });
