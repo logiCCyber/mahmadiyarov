@@ -12,6 +12,10 @@ form.addEventListener('submit', async (e) => {
     const salary = document.querySelector('#salary');
 
     try {
+         if (pass !== confirm) {
+        alert("Passwords do not match.");
+        return;
+    }
         // Отправляем данные на сервер
         const response = await fetch("/registration", {
             method: "POST",
@@ -19,12 +23,11 @@ form.addEventListener('submit', async (e) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: name.value,
-                user: user.value,
-                pass: pass.value,
-                confirm: confirm.value,
-                job: job.value,
-                salary: salary.value,
+                name,
+                user,
+                pass,
+                job,
+                salary
             })
         });
 
@@ -34,6 +37,7 @@ form.addEventListener('submit', async (e) => {
         // Если успех, показываем сообщение
         if (data.success) {
             alert("The employee is added");
+            form.reset(); // Сброс формы после успешной регистрации
         } else {
             alert("There was an error adding the employee.");
         }
