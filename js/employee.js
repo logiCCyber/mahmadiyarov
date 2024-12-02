@@ -32,10 +32,11 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
         console.log(data);
 
-        if (response.ok) {
-            alert("The employee is added"); // Успешное добавление
+        // Если сервер вернул успешный ответ
+        if (response.ok && data.success) {
+            alert("The employee is added");
         } else {
-            alert(`Error: ${data.message}`); // Ошибка
+            alert(`Error: ${data.message}`);
         }
     } catch (error) {
         console.error("Request failed", error);
