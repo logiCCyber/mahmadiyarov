@@ -30,13 +30,12 @@ form.addEventListener('submit', async (e) => {
 
         // Получаем ответ сервера
         const data = await response.json();
-        console.log(data);
 
-        // Если сервер вернул успешный ответ
-        if (response.ok && data.success) {
+        // Если успех, показываем сообщение
+        if (data.success) {
             alert("The employee is added");
         } else {
-            alert(`Error: ${data.message}`);
+            alert("There was an error adding the employee.");
         }
     } catch (error) {
         console.error("Request failed", error);
