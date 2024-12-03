@@ -11,6 +11,7 @@ const accessToResource = async function () {
 
     if (!token) {
         // Если токена нет, перенаправляем на страницу входа
+        console.log("No token found, redirecting to login...");
         window.location.href = "/login";
         return; // Завершаем выполнение функции
     }
