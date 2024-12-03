@@ -33,7 +33,7 @@ form.addEventListener('submit', async (e) => {
 
         // Получаем ответ сервера
         const data = await response.json();
-
+    console.log(data);
         // Если успех, показываем сообщение
         if (data.success) {
             alert("The employee is added");
