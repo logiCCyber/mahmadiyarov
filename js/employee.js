@@ -4,12 +4,12 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Получаем значения полей формы
-    const name = document.querySelector('name');
-    const user = document.querySelector('user').value;
-    const pass = document.querySelector('pass').value;
-    const confirm = document.querySelector('confirm').value;
-    const job = document.querySelector('job').value;
-    const salary = document.querySelector('salary').value;
+    const name = document.querySelector('[name="name"]').value;
+    const user = document.querySelector('[name="user"]').value;
+    const pass = document.querySelector('[name="pass"]').value;
+    const confirm = document.querySelector('[name="confirm"]').value;
+    const job = document.querySelector('[name="job"]').value;
+    const salary = document.querySelector('[name="salary"]').value;
     console.log(pass, name);
     try {
          if (pass !== confirm) {
@@ -23,7 +23,7 @@ form.addEventListener('submit', async (e) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name.value,
+                name,
                 user,
                 pass,
                 job,
