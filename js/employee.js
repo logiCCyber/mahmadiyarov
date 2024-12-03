@@ -4,13 +4,13 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Получаем значения полей формы
-    const name = document.querySelector('name').value;
+    const name = document.querySelector(['name']).value;
     const user = document.querySelector('user').value;
     const pass = document.querySelector('pass').value;
     const confirm = document.querySelector('confirm').value;
     const job = document.querySelector('job').value;
     const salary = document.querySelector('salary').value;
-    console.log(pass);
+    console.log(pass, name);
     try {
          if (pass !== confirm) {
         alert("Passwords do not match.");
