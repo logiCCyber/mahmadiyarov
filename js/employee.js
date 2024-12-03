@@ -4,7 +4,7 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Получаем значения полей формы
-    const name = document.querySelector(['name']).value;
+    const name = document.querySelector('name');
     const user = document.querySelector('user').value;
     const pass = document.querySelector('pass').value;
     const confirm = document.querySelector('confirm').value;
@@ -23,7 +23,7 @@ form.addEventListener('submit', async (e) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name,
+                name.value,
                 user,
                 pass,
                 job,
