@@ -10,7 +10,7 @@ form.addEventListener('submit', async (e) => {
     const confirm = document.querySelector('confirm').value;
     const job = document.querySelector('job').value;
     const salary = document.querySelector('salary').value;
-
+    console.log(pass);
     try {
          if (pass !== confirm) {
         alert("Passwords do not match.");
