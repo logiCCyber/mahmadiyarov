@@ -4,12 +4,12 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Получаем значения полей формы
-    const name = document.querySelector('name');
-    const user = document.querySelector('user');
-    const pass = document.querySelector('pass');
-    const confirm = document.querySelector('confirm');
-    const job = document.querySelector('job');
-    const salary = document.querySelector('salary');
+    const name = document.querySelector('name').value;
+    const user = document.querySelector('user').value;
+    const pass = document.querySelector('pass').value;
+    const confirm = document.querySelector('confirm').value;
+    const job = document.querySelector('job').value;
+    const salary = document.querySelector('salary').value;
 
     try {
          if (pass !== confirm) {
