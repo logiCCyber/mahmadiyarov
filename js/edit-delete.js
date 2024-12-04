@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const employeeForm = document.getElementById("employee-form");
   const editButton = document.getElementById("edit-button");
   const deleteButton = document.getElementById("delete-button");
 
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("firstName").value;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const jobTitle = document.getElementById("job-select").value;
+    const jobTitle = document.querySelector("select[class='form-select bg-secondary text-light border-dark']").value;
     const salary = document.getElementById("salary").value;
 
     if (!selectedEmployee) {
