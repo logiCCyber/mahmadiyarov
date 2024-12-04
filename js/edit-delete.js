@@ -1,26 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const employeeSelect = document.getElementById("employee");
-  const updateButton = document.getElementById("updateButton");
-  const deleteButton = document.getElementById("deleteButton");
+  const employeeForm = document.getElementById("employee-form");
+  const editButton = document.getElementById("edit-button");
+  const deleteButton = document.getElementById("delete-button");
 
-  // Обработчик для кнопки обновления
-  updateButton.addEventListener("click", async () => {
-    const selectedEmployeeId = employeeSelect.value;
+  // Событие для редактирования
+  editButton.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-    if (!selectedEmployeeId) {
-      alert("Please select an employee to update.");
+    const selectedEmployee = document.querySelector("select[class='form-select  bg-secondary text-light border-dark']").value;
+    const name = document.getElementById("firstName").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const jobTitle = document.querySelector("select[class='form-select  bg-secondary text-light border-dark.job']").value;
+    const salary = document.getElementById("salary").value;
+
+    if (!selectedEmployee) {
+      alert("Please select an employee to edit.");
       return;
     }
 
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("job", jobTitle);
+    formData.append("salary", salary);
+
     try {
-      const response = await fetch(`/update/${selectedEmployeeId}`, {
-        method: "PUT", // Предполагается, что обновление использует метод PUT
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          // Данные для обновления можно передать здесь
-          name: "Updated Name",
-          job: "Updated Job",
-        }),
+      const response = await fetch(`/update/${selectedEmployee}`, {
+        method: "PUT",
+        body: formData,
       });
 
       const result = await response.json();
@@ -34,11 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Обработчик для кнопки удаления
-  deleteButton.addEventListener("click", async () => {
-    const selectedEmployeeId = employeeSelect.value;
+  // Событие для удаления
+  deleteButton.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-    if (!selectedEmployeeId) {
+    const selectedEmployee = document.querySelector("select[class='form-select  bg-secondary text-light border-dark']").value;
+
+    if (!selectedEmployee) {
       alert("Please select an employee to delete.");
       return;
     }
@@ -48,15 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch(`/delete/${selectedEmployeeId}`, {
+      const response = await fetch(`/delete/${selectedEmployee}`, {
         method: "DELETE",
       });
 
       const result = await response.json();
       if (result.success) {
         alert("Employee deleted successfully!");
-        // Обновление списка сотрудников после удаления
-        employeeSelect.querySelector(`option[value="${selectedEmployeeId}"]`).remove();
+        // Обновляем список сотрудников
+        document.querySelector(`option[value="${selectedEmployee}"]`).remove();
       } else {
         alert("Failed to delete employee: " + result.message);
       }
