@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   editButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const selectedEmployee = document.querySelector("select[class='form-select  bg-secondary text-light border-dark']").value;
+    const selectedEmployee = document.getElementById("employee-select").value;
     const name = document.getElementById("firstName").value;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
