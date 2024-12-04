@@ -18,17 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("job", jobTitle);
-    formData.append("salary", salary);
+    const updateData = {
+      name,
+      username,
+      password,
+      job: jobTitle,
+      salary
+    };
 
     try {
       const response = await fetch(`/update/${selectedEmployee}`, {
         method: "PUT",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateData), // Отправка данных как JSON
       });
 
       const result = await response.json();
