@@ -1,54 +1,67 @@
-// Получение элементов формы и кнопок
-const form = document.getElementById('employee-form');
-const editButton = document.getElementById('edit-button');
-const deleteButton = document.getElementById('delete-button');
+document.addEventListener("DOMContentLoaded", () => {
+  const employeeSelect = document.getElementById("employee");
+  const updateButton = document.getElementById("updateButton");
+  const deleteButton = document.getElementById("deleteButton");
 
-// Функция для отправки данных на сервер
-async function sendRequest(url, method, data = null) {
-  try {
-    const options = {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-    };
+  // Обработчик для кнопки обновления
+  updateButton.addEventListener("click", async () => {
+    const selectedEmployeeId = employeeSelect.value;
 
-    if (data) {
-      options.body = JSON.stringify(data);
+    if (!selectedEmployeeId) {
+      alert("Please select an employee to update.");
+      return;
     }
 
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+    try {
+      const response = await fetch(`/update/${selectedEmployeeId}`, {
+        method: "PUT", // Предполагается, что обновление использует метод PUT
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          // Данные для обновления можно передать здесь
+          name: "Updated Name",
+          job: "Updated Job",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert("Employee updated successfully!");
+      } else {
+        alert("Failed to update employee: " + result.message);
+      }
+    } catch (error) {
+      console.error("Error updating employee:", error);
+    }
+  });
+
+  // Обработчик для кнопки удаления
+  deleteButton.addEventListener("click", async () => {
+    const selectedEmployeeId = employeeSelect.value;
+
+    if (!selectedEmployeeId) {
+      alert("Please select an employee to delete.");
+      return;
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error('Request failed:', error.message);
-    alert(`Operation failed: ${error.message}`);
-  }
-}
+    if (!confirm("Are you sure you want to delete this employee?")) {
+      return;
+    }
 
-// Обработчик для редактирования сотрудника
-editButton.addEventListener('click', async () => {
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries()); // Преобразуем FormData в объект
+    try {
+      const response = await fetch(`/delete/${selectedEmployeeId}`, {
+        method: "DELETE",
+      });
 
-  const result = await sendRequest('/api/employee', 'PUT', data);
-  if (result) {
-    alert('Employee updated successfully!');
-  }
-});
-
-// Обработчик для удаления сотрудника
-deleteButton.addEventListener('click', async () => {
-  const username = form.querySelector('#username').value;
-
-  if (!username) {
-    alert('Please provide a username to delete.');
-    return;
-  }
-
-  const result = await sendRequest(`/api/employee/${username}`, 'DELETE');
-  if (result) {
-    alert('Employee deleted successfully!');
-  }
+      const result = await response.json();
+      if (result.success) {
+        alert("Employee deleted successfully!");
+        // Обновление списка сотрудников после удаления
+        employeeSelect.querySelector(`option[value="${selectedEmployeeId}"]`).remove();
+      } else {
+        alert("Failed to delete employee: " + result.message);
+      }
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+    }
+  });
 });
