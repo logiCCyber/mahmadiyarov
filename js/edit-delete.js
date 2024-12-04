@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("firstName").value;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const jobTitle = document.querySelector("select[class='form-select  bg-secondary text-light border-dark.job']").value;
+    const jobTitle = document.getElementById("job-select").value;
     const salary = document.getElementById("salary").value;
 
     if (!selectedEmployee) {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const selectedEmployee = document.querySelector("select[class='form-select  bg-secondary text-light border-dark']").value;
+    const selectedEmployee = document.getElementById("employee-select").value;
 
     if (!selectedEmployee) {
       alert("Please select an employee to delete.");
