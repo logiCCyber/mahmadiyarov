@@ -1,5 +1,5 @@
 const form = document.querySelector('#form_auth');
-
+console.log("asdfasdfasdf");
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
