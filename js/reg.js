@@ -37,6 +37,7 @@
           body: JSON.stringify({
             firstName: document.getElementById("firstName").value,
             lastName: document.getElementById("lastName").value,
+            username: document.getElementById("username").value,
             password: password,
             salary: document.getElementById("salary").value,
           })
